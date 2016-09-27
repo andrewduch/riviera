@@ -12,6 +12,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/cloudflare/cfssl/log"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/mitchellh/mapstructure"
 )
@@ -145,6 +146,7 @@ func (request *Request) Execute() (*Response, error) {
 		}
 
 		body = serialized
+		log.Debug(body)
 	} else {
 
 		body = bytes.NewReader([]byte{})
@@ -169,6 +171,7 @@ func (request *Request) Execute() (*Response, error) {
 		return nil, err
 	}
 
+	log.Debug(req.URL.String())
 	httpResponse, err := request.client.httpClient.Do(req)
 	if err != nil {
 		return nil, err
