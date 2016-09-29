@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"reflect"
 	"strconv"
 	"strings"
@@ -110,7 +111,7 @@ func defaultARMRequestSerialize(body interface{}) (io.ReadSeeker, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Debug(jsonEncodedRequest)
+	os.Stdout.Write(jsonEncodedRequest)
 	return bytes.NewReader(jsonEncodedRequest), nil
 }
 
