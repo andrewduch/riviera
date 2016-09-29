@@ -106,6 +106,7 @@ func defaultARMRequestStruct(request *Request, properties interface{}) interface
 }
 
 func defaultARMRequestSerialize(body interface{}) (io.ReadSeeker, error) {
+	log.Debug(body)
 	jsonEncodedRequest, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
@@ -146,7 +147,7 @@ func (request *Request) Execute() (*Response, error) {
 		}
 
 		body = serialized
-		log.Debug(body)
+
 	} else {
 
 		body = bytes.NewReader([]byte{})
