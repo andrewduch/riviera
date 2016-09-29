@@ -5,7 +5,7 @@ import "github.com/jen20/riviera/azure"
 type FailoverDBDatabase struct {
 	DatabaseName      string             `json:"-"`
 	ResourceGroupName string             `json:"-"`
-	FailoverPolicies  []FailoverPolicies `json:"failoverPolicies,omitempty"`
+	FailoverPolicies  []FailoverPolicies `json:"failoverPolicies,omitempty" riviera:"failoverPolicies"`
 }
 
 type FailoverPolicies struct {
