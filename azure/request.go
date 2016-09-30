@@ -7,13 +7,11 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/mitchellh/mapstructure"
 )
@@ -111,7 +109,7 @@ func defaultARMRequestSerialize(body interface{}) (io.ReadSeeker, error) {
 	if err != nil {
 		return nil, err
 	}
-	os.Stdout.Write(jsonEncodedRequest)
+
 	return bytes.NewReader(jsonEncodedRequest), nil
 }
 
@@ -173,7 +171,6 @@ func (request *Request) Execute() (*Response, error) {
 		return nil, err
 	}
 
-	log.Debug(req.URL.String())
 	httpResponse, err := request.client.httpClient.Do(req)
 	if err != nil {
 		return nil, err
